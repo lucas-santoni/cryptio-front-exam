@@ -1,0 +1,137 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Hopefully this API will get you a job at Cryptio!",
+        "title": "Cryptio Front Exam API",
+        "contact": {
+            "name": "Lucas Santoni",
+            "email": "lucas@cryptio.co"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/portfolio/history": {
+            "get": {
+                "description": "2 months worth of data are returned at most, which is around 60 entries.\nValuation is expressed in USD.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve the portfolio history of an user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/portfolio.PortfolioHistoryEntry"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/portfolio/top-assets": {
+            "get": {
+                "description": "9 assets are returned. The 10th entry aggregates all the other assets.\nVolumes and prices are expressed in USD.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve the top assets of the portfolio of an user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/portfolio.PortfolioTopAssetEntry"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "portfolio.Asset": {
+            "type": "object",
+            "properties": {
+                "logoImage": {
+                    "description": "LogoImage is an optional field.",
+                    "type": "string",
+                    "example": "https://host.org/image.png"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Bitcoin"
+                },
+                "symbol": {
+                    "description": "Symbol is an optional field.",
+                    "type": "string",
+                    "example": "btc"
+                }
+            }
+        },
+        "portfolio.PortfolioHistoryEntry": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "example": "2021-01-01T00:00:00Z"
+                },
+                "valuation": {
+                    "type": "number",
+                    "example": 123.456
+                }
+            }
+        },
+        "portfolio.PortfolioTopAssetEntry": {
+            "type": "object",
+            "properties": {
+                "asset": {
+                    "$ref": "#/definitions/portfolio.Asset"
+                },
+                "repartition": {
+                    "type": "number",
+                    "example": 51.23
+                },
+                "totalPrice": {
+                    "type": "number",
+                    "example": 123.456
+                },
+                "unitPrice": {
+                    "type": "number",
+                    "example": 123.456
+                },
+                "volume": {
+                    "type": "number",
+                    "example": 123.456
+                }
+            }
+        },
+        "utils.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "example": "This is an example error message."
+                },
+                "more": {
+                    "description": "More is an optional field.",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

@@ -7,8 +7,9 @@ import (
 )
 
 type ErrorResponse struct {
-	Error string      `json:"error"`
-	More  interface{} `json:"more"`
+	Error string `json:"error" example:"This is an example error message."`
+	// More is an optional field.
+	More interface{} `json:"more,omitempty"`
 }
 
 func HandleErrorInHandler(c *gin.Context, err error, more interface{}) {

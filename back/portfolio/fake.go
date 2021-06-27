@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+const OtherName = "Other"
+
 var btc = Asset{
 	"https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
 	"Bitcoin",
@@ -64,7 +66,7 @@ var alice = Asset{
 
 var other = Asset{
 	"",
-	"Other",
+	OtherName,
 	"",
 }
 
@@ -103,7 +105,7 @@ func fakeTopAssets() []PortfolioTopAssetEntry {
 	}
 
 	sort.Slice(entries, func(i, j int) bool {
-		return entries[i].Repartition.Cmp(entries[j].Repartition) > 0
+		return entries[i].Repartition.Cmp(entries[j].Repartition) > 0 && entries[i].AssetInformation.Name != other.Name
 	})
 
 	return entries

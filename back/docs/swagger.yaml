@@ -1,0 +1,97 @@
+definitions:
+  portfolio.Asset:
+    properties:
+      logoImage:
+        description: LogoImage is an optional field.
+        example: https://host.org/image.png
+        type: string
+      name:
+        example: Bitcoin
+        type: string
+      symbol:
+        description: Symbol is an optional field.
+        example: btc
+        type: string
+    type: object
+  portfolio.PortfolioHistoryEntry:
+    properties:
+      date:
+        example: "2021-01-01T00:00:00Z"
+        type: string
+      valuation:
+        example: 123.456
+        type: number
+    type: object
+  portfolio.PortfolioTopAssetEntry:
+    properties:
+      asset:
+        $ref: '#/definitions/portfolio.Asset'
+      repartition:
+        example: 51.23
+        type: number
+      totalPrice:
+        example: 123.456
+        type: number
+      unitPrice:
+        example: 123.456
+        type: number
+      volume:
+        example: 123.456
+        type: number
+    type: object
+  utils.ErrorResponse:
+    properties:
+      error:
+        example: This is an example error message.
+        type: string
+      more:
+        description: More is an optional field.
+        type: object
+    type: object
+info:
+  contact:
+    email: lucas@cryptio.co
+    name: Lucas Santoni
+  description: Hopefully this API will get you a job at Cryptio!
+  title: Cryptio Front Exam API
+  version: "1.0"
+paths:
+  /portfolio/history:
+    get:
+      description: |-
+        2 months worth of data are returned at most, which is around 60 entries.
+        Valuation is expressed in USD.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/portfolio.PortfolioHistoryEntry'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Retrieve the portfolio history of an user
+  /portfolio/top-assets:
+    get:
+      description: |-
+        9 assets are returned. The 10th entry aggregates all the other assets.
+        Volumes and prices are expressed in USD.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/portfolio.PortfolioTopAssetEntry'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/utils.ErrorResponse'
+      summary: Retrieve the top assets of the portfolio of an user
+swagger: "2.0"
