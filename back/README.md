@@ -10,8 +10,9 @@ If you can/want to run Go code in your machine run:
 go mod run .
 ```
 
-And visit [http://127.0.0.1:8080/swagger/index.html](http://127.0.01:8080/swagger/index.html) in order
-to access the specifications of the API.
+And visit
+[http://127.0.0.1:8080/swagger/index.html](http://127.0.01:8080/swagger/index.html)
+in order to access the specifications of the API.
 
 ## With Docker
 
@@ -34,3 +35,7 @@ docker run \
   -e PORT=8080 \
   cryptio-front-exam-back
 ```
+
+Finally, visit
+[http://127.0.0.1:8080/swagger/index.html](http://127.0.01:8080/swagger/index.html)
+in order to access the specifications of the API.
