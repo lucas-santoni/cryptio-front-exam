@@ -108,7 +108,8 @@ safety.
 You **are free to use any third-party dependency, except for *complete* React UI
 frameworks such as Material UI or Chakra UI**. We want you to design your own
 components. **CSS frameworks such as Bootstrap or Bulma are also forbidden**: we
-want to read actual CSS code from you.
+want to read actual CSS code from you. Howerver, CSS utilities like
+Normalize.css are fine.
 
 You **are free to use any HTTP client**, as long as you can maintain type
 safety.
@@ -117,7 +118,7 @@ safety.
 ## Do you provide any mock-up?
 
 We don't! Although we work with designers from time to time, **we usually don't
-have mock-ups of the features we implement at Cryptio**. However, we took of few
+have mock-ups for the features we implement at Cryptio**. However, we took of few
 screenshots of other products, which should be a great source of inspiration for
 you. [Click here](./gallery/) to access the gallery.
 
