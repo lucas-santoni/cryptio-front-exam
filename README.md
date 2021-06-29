@@ -112,7 +112,9 @@ want to read actual CSS code from you. However, CSS utilities like
 Normalize.css are fine.
 
 You **are free to use any HTTP client**, as long as you can maintain type
-safety.
+safety. We highly recommend libraries such as [React Query](https://react-query.tanstack.com/)
+or [SWR](https://swr.vercel.app/) which are React-oriented (hooks-based for the
+most part) and TypeScript-ready. Using them correctly will be a plus!
 
 
 ## Do you provide any mock-up?
