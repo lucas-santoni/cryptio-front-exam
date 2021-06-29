@@ -8,6 +8,7 @@ import (
 	"back/utils"
 	"fmt"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
@@ -36,6 +37,10 @@ func main() {
 	api := api.New()
 
 	router := gin.Default()
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"*"},
+	}))
 
 	router.GET("/ping", ping.GET(api))
 
